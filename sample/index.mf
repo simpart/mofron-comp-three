@@ -1,0 +1,28 @@
+<setting>
+    <tag load="mofron-comp-three">Three</tag>
+</setting>
+
+<script run=init>
+let ani_evt = (box) => {
+    box.rotation.y += 0.01;
+};
+</script>
+
+<script run=after>
+let THREE = three.THREE();
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(45, three.width() / three.height());
+camera.position.set(0, 0, +1000);
+
+const geometry = new THREE.BoxGeometry(400, 400, 400);
+const material = new THREE.MeshNormalMaterial();
+const box = new THREE.Mesh(geometry, material);
+scene.add(box);
+
+three.scene(scene);
+three.camera(camera);
+three.animateEvent(ani_evt, box);
+</script>
+
+<Three name=three size=(800,600)></Three>
